@@ -1,0 +1,109 @@
+import java.io.*;
+
+import javax.servlet.*;
+
+import javax.servlet.http.*;
+
+import javax.servlet.annotation.WebServlet;
+
+
+
+@WebServlet("/LoginServlet")
+
+public class LoginServlet extends HttpServlet {
+
+
+
+    // Display login form
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+
+            throws ServletException, IOException {
+
+        
+
+        response.setContentType("text/html");
+
+        PrintWriter out = response.getWriter();
+
+
+
+        out.println("<!DOCTYPE html>");
+
+        out.println("<html><head><title>Login Page</title></head><body>");
+
+        out.println("<h2>Login Form</h2>");
+
+        out.println("<form method='post' action='LoginServlet'>");
+
+        out.println("Username: <input type='text' name='username' required><br><br>");
+
+        out.println("Password: <input type='password' name='password' required><br><br>");
+
+        out.println("<input type='submit' value='Login'>");
+
+        out.println("</form>");
+
+        out.println("</body></html>");
+
+
+
+        out.close();
+
+    }
+
+
+
+    // Process login
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+
+            throws ServletException, IOException {
+
+        
+
+        response.setContentType("text/html");
+
+        PrintWriter out = response.getWriter();
+
+
+
+        String username = request.getParameter("username");
+
+        String password = request.getParameter("password");
+
+
+
+        // Dummy valid credentials
+
+        String validUsername = "admin";
+
+        String validPassword = "1234";
+
+
+
+        out.println("<!DOCTYPE html>");
+
+        out.println("<html><head><title>Login Result</title></head><body>");
+
+
+
+        if (username.equals(validUsername) && password.equals(validPassword)) {
+
+            out.println("<h2>Welcome, " + username + "!</h2>");
+
+        } else {
+
+            out.println("<h3>Invalid username or password.</h3>");
+
+        }
+
+
+
+        out.println("</body></html>");
+
+        out.close();
+
+    }
+
+}
